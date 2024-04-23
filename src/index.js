@@ -13,6 +13,7 @@ class App extends React.Component {
       icone: null,
       mensagemDeErro: null,
     };
+    console.log("construtor");
   }
 
   obterEstacao = (data, latitude) => {
@@ -45,24 +46,40 @@ class App extends React.Component {
   };
 
   obterLocalizacao = () => {
-    window.navigator.geolocation.getCurrentPosition((posicao) => {
-      let data = new Date();
-      let estacao = this.obterEstacao(data, posicao.coords.latitude);
-      let icone = this.icones[estacao];
-      console.log(icone);
-      this.setState(
-        {
+    window.navigator.geolocation.getCurrentPosition(
+      (posicao) => {
+        let data = new Date();
+        let estacao = this.obterEstacao(data, posicao.coords.latitude);
+        let icone = this.icones[estacao];
+        console.log(icone);
+        this.setState({
           latitude: posicao.coords.latitude,
           longitude: posicao.coords.longitude,
           estacao: estacao,
           data: data.toLocaleTimeString(),
           icone: icone,
-        }
-      );
-    });
+        });
+      },
+      (erro) => {
+        console.log(erro);
+        this.setState({ mensagemDeErro: `Tente novamente mais tarde` });
+      }
+    );
   };
 
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+  }
+
   render() {
+    console.log(this.state);
     return (
       // responsividade, margem acima
       <div className="container mt-2">
@@ -91,15 +108,16 @@ class App extends React.Component {
                     {/* renderização condicional */}
                     {this.state.latitude
                       ? `Coordenadas: ${this.state.latitude}, ${this.state.longitude}. Data: ${this.state.data}`
-                      : "Clique no botão para saber a sua estação climática"
-                      }
-                      
+                      : this.state.mensagemDeErro
+                      ? `${this.state.mensagemDeErro}`
+                      : "Clique no botão para saber a sua estação climática"}
                   </p>
                 </div>
                 {/* botão azul (outline, 100% de largura e margem acima) */}
                 <button
                   onClick={this.obterLocalizacao}
-                  className="btn btn-outline-primary w-100 mt-2">
+                  className="btn btn-outline-primary w-100 mt-2"
+                >
                   Qual a minha estação?
                 </button>
               </div>
@@ -110,9 +128,9 @@ class App extends React.Component {
     );
   }
 
-//   render() {
-//     return <div>Meu app</div>;
-//   }
+  //   render() {
+  //     return <div>Meu app</div>;
+  //   }
 }
 ReactDOM.render(<App />, document.querySelector("#root"));
 
