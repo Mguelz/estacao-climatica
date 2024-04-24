@@ -1,12 +1,11 @@
-rodar projeto - npm start
+Aula do dia 23/04/2024
+Continuação da aula de ontem do Carmino
 
+Projeto completo da apostila, porem o timer de quando entra no site nao esta funcionando
 
+O código tem algumas coisas a mais do que a apostila porque o Bonato adicionou mais algumas coisas na aula dele
 
-
-
-
-
-
+------------------------------------------------------------------------------------------------------------------------
 
 # Getting Started with Create React App
 
