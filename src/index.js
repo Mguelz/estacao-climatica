@@ -120,7 +120,8 @@ class App extends React.Component {
                 latitude={this.state.latitude}
                 longitude={this.state.longitude}
                 obterLocalizacao={this.obterLocalizacao}
-                mostrar={this.mostrar}
+                mostrarCoordenadas={this.mostrarCoordenadas}
+                mostrar={this.state.mostrar}
               />
             )}
           </div>

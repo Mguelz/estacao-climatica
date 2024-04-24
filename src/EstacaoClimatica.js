@@ -27,6 +27,7 @@ export class EstacaoClimatica extends React.Component {
     return (
       <div className="card">
         {/* o corpo do cartão */}
+          {/* {this.props.mostrar} */}
         <div className="card-body">
           {/* centraliza verticalmente, margem abaixo */}
           <div
@@ -38,6 +39,7 @@ export class EstacaoClimatica extends React.Component {
             {/* largura 75%, margem no à esquerda (start), fs aumenta a fonte */}
             <p className=" w-75 ms-3 text-center fs-1">{this.props.estacao}</p>
           </div>
+          {/* : */}
           <div>
             <p className="text-center">
               {/* renderização condicional */}
